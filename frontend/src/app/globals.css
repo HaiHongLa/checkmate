@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a4a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a5a;
+}
+
+.coach-markdown {
+  word-break: break-word;
+}
+
+.coach-markdown > :first-child {
+  margin-top: 0;
+}
+
+.coach-markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.coach-markdown p {
+  margin: 0.5em 0;
+}
+
+.coach-markdown p:first-child {
+  margin-top: 0;
+}
+
+.coach-markdown ul,
+.coach-markdown ol {
+  margin: 0.5em 0;
+  padding-left: 1.25rem;
+}
+
+.coach-markdown li {
+  margin: 0.25em 0;
+}
+
+.coach-markdown li > p {
+  margin: 0;
+}
+
+.coach-markdown strong {
+  font-weight: 600;
+  color: #f3f4f6;
+}
+
+.coach-markdown em {
+  font-style: italic;
+}
+
+.coach-markdown code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.875em;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.125em 0.375em;
+  border-radius: 0.25rem;
+}
+
+.coach-markdown pre {
+  margin: 0.75em 0;
+  padding: 0.75em 1em;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 0.375rem;
+  overflow-x: auto;
+}
+
+.coach-markdown pre code {
+  background: none;
+  padding: 0;
+}
+
+.coach-markdown h1,
+.coach-markdown h2,
+.coach-markdown h3 {
+  font-weight: 600;
+  color: #f3f4f6;
+  margin: 0.75em 0 0.375em;
+}
+
+.coach-markdown h1 {
+  font-size: 1.125em;
+}
+
+.coach-markdown h2 {
+  font-size: 1.05em;
+}
+
+.coach-markdown h3 {
+  font-size: 1em;
+}
+
+.coach-markdown blockquote {
+  margin: 0.5em 0;
+  padding-left: 0.75em;
+  border-left: 3px solid #5c6bc0;
+  color: #9ca3af;
+}
+
+.coach-markdown a {
+  color: #93a4e8;
+  text-decoration: underline;
+}
+
+.coach-markdown hr {
+  margin: 0.75em 0;
+  border: none;
+  border-top: 1px solid #2a2a4a;
+}
+
+.coach-markdown table {
+  width: 100%;
+  margin: 0.5em 0;
+  border-collapse: collapse;
+  font-size: 0.875em;
+}
+
+.coach-markdown th,
+.coach-markdown td {
+  border: 1px solid #2a2a4a;
+  padding: 0.25em 0.5em;
+  text-align: left;
+}
+
+.coach-markdown th {
+  background: rgba(0, 0, 0, 0.25);
+}
