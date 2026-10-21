@@ -59,6 +59,49 @@ CREATE TABLE IF NOT EXISTS move_analyses (
 );
 
 CREATE INDEX IF NOT EXISTS idx_move_analyses_game ON move_analyses(game_id);
+
+CREATE TABLE IF NOT EXISTS opening_repertoires (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    color TEXT NOT NULL CHECK (color IN ('white', 'black')),
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS opening_lines (
+    id TEXT PRIMARY KEY,
+    repertoire_id TEXT NOT NULL REFERENCES opening_repertoires(id) ON DELETE CASCADE,
+    name TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    last_practiced_at TEXT,
+    practice_attempt_count INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS opening_plies (
+    line_id TEXT NOT NULL REFERENCES opening_lines(id) ON DELETE CASCADE,
+    ply_index INTEGER NOT NULL,
+    san TEXT NOT NULL,
+    uci TEXT NOT NULL,
+    fen_after TEXT NOT NULL,
+    is_key_position INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (line_id, ply_index)
+);
+
+CREATE TABLE IF NOT EXISTS opening_explanations (
+    line_id TEXT NOT NULL REFERENCES opening_lines(id) ON DELETE CASCADE,
+    ply_index INTEGER NOT NULL,
+    why_move TEXT,
+    strategic_idea TEXT,
+    plan_text TEXT,
+    watch_for TEXT,
+    remember_this TEXT,
+    content_version TEXT NOT NULL DEFAULT 'v1',
+    generated_at TEXT,
+    PRIMARY KEY (line_id, ply_index)
+);
+
+CREATE INDEX IF NOT EXISTS idx_opening_lines_repertoire ON opening_lines(repertoire_id);
 """
 
 

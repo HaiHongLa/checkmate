@@ -123,3 +123,87 @@ class GameAnalysisStatusResponse(BaseModel):
     error_message: str | None = None
     generated_at: str | None = None
 
+
+class CreateRepertoireRequest(BaseModel):
+    name: str = Field(..., min_length=1, max_length=120)
+    color: str = Field(..., pattern="^(white|black)$")
+
+
+class UpdateRepertoireRequest(BaseModel):
+    name: str = Field(..., min_length=1, max_length=120)
+
+
+class RepertoireResponse(BaseModel):
+    id: str
+    name: str
+    color: str
+    created_at: str
+    updated_at: str
+
+
+class CreateLineRequest(BaseModel):
+    name: str = Field(..., min_length=1, max_length=120)
+
+
+class UpdateLineRequest(BaseModel):
+    name: str | None = None
+    record_practice: bool = False
+
+
+class MoveInput(BaseModel):
+    san: str
+
+
+class ReplaceLineMovesRequest(BaseModel):
+    moves: list[MoveInput] = Field(default_factory=list)
+
+
+class PlyResponse(BaseModel):
+    ply_index: int
+    san: str
+    uci: str
+    fen_after: str
+    is_key_position: bool
+
+
+class ExplanationResponse(BaseModel):
+    ply_index: int
+    why_move: str | None = None
+    strategic_idea: str | None = None
+    plan_text: str | None = None
+    watch_for: str | None = None
+    remember_this: str | None = None
+    content_version: str = "v1"
+    generated_at: str | None = None
+
+
+class LineDetailResponse(BaseModel):
+    id: str
+    repertoire_id: str
+    name: str
+    created_at: str
+    updated_at: str
+    last_practiced_at: str | None = None
+    practice_attempt_count: int = 0
+    plies: list[PlyResponse] = Field(default_factory=list)
+    explanations: list[ExplanationResponse] = Field(default_factory=list)
+
+
+class LineSummaryResponse(BaseModel):
+    id: str
+    repertoire_id: str
+    name: str
+    created_at: str
+    updated_at: str
+    last_practiced_at: str | None = None
+    practice_attempt_count: int = 0
+    move_count: int = 0
+
+
+class KeyPositionRequest(BaseModel):
+    is_key: bool
+
+
+class GenerateExplanationsRequest(BaseModel):
+    ply_indices: list[int] | None = None
+
